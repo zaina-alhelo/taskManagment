@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/effects.css">
+<link rel="stylesheet" href="style/history_style.css.css">
+    <title>Task Managment App</title>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">Premier</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="#" data-section="dashboard">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-section="Projects">
+                    <i class='bx bx-task'></i>
+                    <span class="text">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-section="chart">
+                 <i class='bx bx-pie-chart' ></i>
+                    <span class="text">Chart</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-section="history">
+                 <i class='bx bx-history' ></i>
+                    <span class="text">History</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+       
+            <li>
+                <a href="#" id="logout" style="color: red;">
+                    <i class='bx bx-log-out' ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main id="dashboard">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                  
+                </div>
+            </div>
+
+            <div class="table-data">
+
+                       <div class="dashboard">
+        <div id="dashboard_title" style="color: #3C91E6;"> <p>Welcome <span id="firstNameDisplay">   </span> <i class='bx bx-wink-smile'></i></p> </div>
+        <div id="cont">
+        <div class="item clock" id="clock">
+            <img src="images/icons/clock.png" alt="Clock">
+            <div class="text" id="clockText"></div>
+        </div>
+        <div class="item date" id="date">
+            <img src="images/icons/calendar.png" alt="Calendar">
+            <div class="text" id="dateText"></div>
+        </div>
+        <div class="item weather" id="weather" >
+            <img src="images/icons/weather.png" alt="Weather" >
+            <div class="text" id="weatherText"></div>
+        </div>
+        <div class="item tips" id="tips">
+            <img src="images/icons/tips.png" alt="Tips">
+            <div class="text" id="tipsText"></div>
+        </div>
+        </div>
+    </div>
+                <div class="todo">
+                    <div class="head" style="color: #3C91E6;">
+                        <h3>Note <i class='bx bx-notepad' ></i></h3>
+                        <i class='bx bx-plus'></i>
+                     
+                    </div>
+                    <ul class="todo-list">
+                        <li class="completed">
+                            <p>Note:</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="completed">
+                            <p>Note:</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="not-completed">
+                            <p>Note:</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="completed">
+                            <p>Note:</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="not-completed">
+                            <p>Note:</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <main id="Projects" style="display: none;">
+     
+                <div class="project-details"></div>
+               
+                </div>
+            </div>
+        <h2 id="h2">User Projects</h2>
+        <form id="projectForm">
+            <input type="text" id="projectTitle" placeholder="Project Title" required>
+            <button type="submit">Add Project</button>
+        </form>
+
+
+    </div>
+    <ul id="projectList"></ul>
+
+    <div id="modals">
+
+    </div>
+            </div>
+        </main>
+
+        <main id="chart" style="display: none;">
+<div style="width: 50%; margin: auto;" id="div_chart">
+    <canvas id="myPieChart" style="width: 400px; " ></canvas></div>
+        </main>
+        <main id="history" style="display: none;">
+            <h2> <i class='bx bx-edit' ></i> Follow your recent activity </h2><br>
+      <section>
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="historyList"></tbody>
+        </table>
+      </section>
+    </main>
+
+    </section>
+ 
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="scripts/script.js"></script>
+    <script src="scripts/api.js"></script>
+    
+</body>
+
+</html>

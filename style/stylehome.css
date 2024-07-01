@@ -1,0 +1,358 @@
+ * {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: whitesmoke;
+    font-size: 36px;
+
+}
+
+#div_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+
+}
+
+#div_main p {
+  margin-bottom: 25px;
+    font-family: "Just Another Hand", cursive;
+    font-size: 2.8rem;
+}
+
+#div_main h1 {
+    z-index: 600;
+}
+
+#middle_section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: red;
+ } 
+
+
+ #middle_section p {
+    color: #E6B9A6;
+}
+
+/*change*/
+.two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+    margin: 50px 0;
+    align-items: center; 
+}
+
+.two img {
+    width: 80%;
+    height: auto; 
+    transition: transform 0.3s ease-in-out; 
+}
+.two.img-two {
+    width: 80%;
+    height: auto; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.two img:hover {
+    transform: scale(1.05); 
+}
+
+.two .featur-1 {
+    margin-top: 40px;
+    width: 65%;
+    font-family: "Just Another Hand", cursive; 
+    font-size: 1.1em; 
+    color: #333; 
+    line-height: 1.6; 
+    position: relative;
+    left: 100px;
+}
+.two .featur-3 {
+    margin-top: 20px;
+    width: 65%;
+    font-family: "Just Another Hand", cursive; 
+    font-size: 1.1em; 
+    color: #333; 
+    line-height: 2; 
+    margin: 20px;
+}
+
+.featur-2 label{
+    display: block;
+    padding: 10px;
+    margin: 20px;
+    font-family: "Just Another Hand", cursive; 
+}
+/*end change*/
+
+
+#hero01 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+
+}
+
+  .navbar-brand img {
+    height: 45px; 
+    object-fit: contain; 
+}
+
+.navbar-brand{
+    font-family: "Just Another Hand", cursive;
+    position: relative;
+    left: 10px;
+}
+
+#empty {
+    height: 100px;
+} 
+
+#demo {
+    width: 72%;
+    /* z-index: -10 !important; */
+}
+
+#copyRight {
+    color: red;
+    font-size: x-large;
+
+}
+
+
+
+#welcome_01 {
+    margin-top: 80px;
+    background-clip: text;
+    background-image: url(https://i.pinimg.com/originals/8e/8c/72/8e8c72a1459ad7332b14306bea1af865.gif);
+    background-position: 100%;
+    background-position: center;
+    color: #0000;
+    font-family: sans-serif;
+    font-weight: 900;
+    font-size: 100px;
+    width: 800px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: 0.0003s ease;
+    
+
+}
+
+#button_show {
+    margin-bottom: 4%;
+}
+
+#main_art_board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-top: 7%;
+}
+
+#main_art_board img {
+    width: 500px;
+    height: 500px;
+
+}
+
+#gotToLogIn{
+    font-size: 20px;
+}   
+
+
+
+/* responsive */
+
+@media (max-width: 1200px) {
+    body {
+        font-size: 1.5rem;
+    }
+
+    #welcome_01 {
+        font-size: 4rem;
+        width: 600px;
+        height: 150px;
+    }
+    .two .featur-1{
+        font-size: 2rem;
+        position: relative;
+        left: 85px;
+    }
+
+    .two .featur-2{
+        font-size: 2rem;
+    }
+
+   .two .featur-3 {
+        font-size: 2.5rem;
+        position: relative;
+        left: 75px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 1.2rem;
+    }
+
+    #welcome_01 {
+        font-size: 3rem;
+        width: 400px;
+        height: 100px;
+    }
+
+    #main_art_board {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main_art_board img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 1rem;
+    }
+
+    #welcome_01 {
+        font-size: 3rem;
+    }
+ 
+    .two .featur-1 {
+        font-size: 1.3rem;
+        position: relative;
+        left: 0;
+        right: 1000px;
+        width: 100%;
+        height: 100%;
+        padding-left: 5px;
+        
+    }
+    .two .featur-2 {
+        font-size: 1.3rem;
+        position: relative;
+        left: 0;
+        right: 1000px;
+        width: 100%;
+        padding-left: 5px;
+        
+    }
+    .two.img-two {
+        width: 100%;
+        height: auto; 
+        transition: transform 0.3s ease-in-out; 
+    }
+    .two .featur-3 {
+        font-size: 1.3rem;
+        position: relative;
+        left: 0;
+        right: 1000px;
+        width: 100%;
+        padding-left: 5px;
+        
+    }
+
+    .carousel-caption{
+        font-size: 10px;
+    }
+
+    #main_art_board img {
+        width: 100%;
+    }
+    .koko h5{
+        font-size: 10px;
+    }
+    .koko p{
+        font-size: 8px;
+    }
+    #signUp{
+        font-size: 9px;
+    }
+}
+@media (max-width: 340px) {
+    body {
+        font-size: 10px;
+    }
+    #div_main p {
+        margin-top: 150px;
+        font-size: 2rem;
+    }
+    #main_art_board img {
+        width: 100%; 
+        height: auto; 
+        max-width: 100%; 
+    }
+    .navbar-brand {
+        font-size: 16px; 
+        left: 5px; 
+    }
+    .navbar-brand.img{
+        height: 20px;
+    }
+    .carousel-caption{
+        font-size: 10px;
+}
+.two {
+    gap: 10px;
+    margin: 20px 0; 
+}
+
+.two img, .two .img-two {
+    width: 100%;
+}
+.two .featur-1 {
+    width: 100%; 
+    font-size: 1.8em; 
+    line-height: 1.4; 
+}
+.two .featur-2 {
+    width: 100%; 
+    font-size: 1.8em; 
+    line-height: 1.4; 
+}
+
+ .two .featur-3 {
+    width: 100%; 
+    font-size: 1.8em; 
+    line-height: 1.4; 
+}
+
+.two .featur label{
+    margin-bottom: 10px; 
+    padding: 5px; 
+    font-size: 0.9em; 
+}
+.featur-2 label {
+    margin-bottom: 10px; 
+    padding: 5px; 
+    font-size: 0.9em; 
+}
+.koko h5{
+    font-size: 10px;
+}
+.koko p{
+    font-size: 8px;
+}
+#signUp{
+    font-size: 9px;
+}
+} 
