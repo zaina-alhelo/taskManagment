@@ -1,0 +1,533 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Main content styles */
+#content main {
+  width: 100%;
+  padding: 20px;
+  margin: 0;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+/* Main container */
+#Projects {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Project details container */
+.project-details {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.project-details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Project form styles */
+#projectForm {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#projectForm input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  outline: none;
+  color: #555;
+}
+
+#projectForm input[type="text"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+#projectForm input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+#projectForm button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+#projectForm button:hover {
+  background-color: #76b8ff;
+}
+
+/* Container for Projects */
+#container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  padding-bottom: 0;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Project Title */
+#h3 {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+#h3 button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  width: 120px;
+  max-height: 30px;
+}
+
+#h3 input {
+  max-height: 30px;
+}
+
+#h3 button:hover {
+  background-color: #76b8ff;
+}
+
+/* Button styles */
+.button,
+.editProject,
+.addTask,
+.saveButton,
+.deleteProject,
+.cancelEdit,
+#form_button {
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.editProject,
+.addTask,
+.saveButton,
+#form_button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.editProject:hover,
+.addTask:hover,
+.saveButton:hover,
+#form_button:hover {
+  background-color: #76b8ff;
+}
+
+.deleteProject,
+.cancelEdit {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.deleteProject:hover,
+.cancelEdit:hover {
+  background-color: #ff7961;
+}
+
+/* Task Form Styles */
+.taskForm {
+  margin-top: 20px;
+  display: grid;
+  transition: transform 0.2s ease;
+}
+
+.taskForm button {
+  max-width: 125px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.taskOptions {
+  display: flex;
+  max-height: 50px;
+  gap: 10px;
+}
+
+#pro_div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  row-gap: 10px;
+}
+
+#pro_div h3 {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  outline: none;
+  color: #555;
+  height: 40px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#pro_div input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  outline: none;
+  color: #555;
+  height: 40px;
+  margin: 0;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+#pro_div button {
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.taskForm input[type="text"],
+.taskForm select,
+.taskForm input[type="date"],
+.taskForm textarea,
+.taskForm button,
+.taskForm .saveButton,
+.taskForm .cancelEdit {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  width: 100%;
+  /* Ensure inputs and select take full width */
+}
+
+.taskForm button {
+  margin-bottom: 0;
+}
+
+.taskForm input[type="text"]:focus,
+.taskForm select:focus,
+.taskForm input[type="date"]:focus,
+.taskForm textarea:focus,
+.taskForm button:focus,
+.taskForm .cancelEdit:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+select,
+textarea::placeholder,
+input[type="text"]::placeholder,
+input[type="date"] {
+  color: #999;
+  font-style: italic;
+}
+
+
+/* Task List Styles */
+.taskList {
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.taskList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.taskList li,
+.taskList form {
+  margin-top: 10px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.taskList li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.taskList li .taskContent {
+  font-size: 16px;
+}
+
+.taskList li .taskContent h4 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #333;
+}
+
+.taskList li .taskContent p {
+  margin: 8px 0;
+  color: #555;
+  word-wrap: break-word;
+}
+
+.taskList li .editTask,
+.taskList li .deleteTask {
+  margin-top: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.taskList li .editTask {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.taskList li .deleteTask {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.taskList li .editTask:hover,
+.taskList li .deleteTask:hover {
+  filter: brightness(110%);
+}
+
+/* Edit Task Form */
+.taskContentEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taskContentEdit .firstLine,
+.taskContentEdit .secondLine,
+.taskContentEdit .thirdLine {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.taskContentEdit input[type="text"],
+.taskContentEdit input[type="date"],
+.taskContentEdit select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.taskContentEdit textarea {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  outline: none;
+  resize: vertical;
+}
+
+.taskContentEdit input[type="text"]:focus,
+.taskContentEdit textarea:focus,
+.taskContentEdit input[type="date"]:focus,
+.taskContentEdit select:focus {
+  border-color: #2196f3;
+}
+
+.taskContentEdit textarea {
+  min-height: 120px;
+}
+/*******************************************/
+
+textarea {
+  min-height: 120px;
+}
+/******************************************/
+
+.taskContentEdit .thirdLine button {
+  padding: 12px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.taskContentEdit .thirdLine button[type="submit"] {
+
+  background-color: #007bff;
+  color: #fff;
+}
+
+.taskContentEdit .thirdLine button.cancelEdit {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.taskContentEdit .thirdLine button:hover {
+  background-color: #ff7961;
+}
+
+@media screen and (max-width: 600px) {
+  /* Responsive adjustments */
+
+  /* Project details container */
+  .project-details {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  /* Project form styles */
+  #projectForm {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #projectForm input[type="text"] {
+    width: 100%;
+  }
+
+  #projectForm button {
+    width: 100%;
+  }
+
+  /* Project Title */
+  #h3 {
+    font-size: 20px;
+  }
+
+  #h3 input {
+    width: 70%;
+  }
+
+  #h3 button {
+    width: 25%;
+    margin-left: 0;
+  }
+
+  /* Button styles */
+  .button,
+  .editProject,
+  .addTask,
+  .saveButton,
+  .deleteProject,
+  #form_button,
+  .cancelEdit {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  /* Task Form Styles */
+  .taskForm {
+    gap: 15px;
+  }
+
+  .taskForm input[type="text"],
+  .taskForm select,
+  .taskForm input[type="date"],
+  .taskForm textarea,
+  .taskForm button,
+  .taskForm .saveButton,
+  .taskForm .cancelEdit {
+    width: 100%;
+  }
+
+  /* Task List Styles */
+  .taskList li .editTask,
+  .taskList li .deleteTask {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  /* Edit Task Form */
+  .taskContentEdit .firstLine,
+  .taskContentEdit .secondLine,
+  .taskContentEdit .thirdLine {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .taskContentEdit input[type="text"],
+  .taskContentEdit input[type="date"],
+  .taskContentEdit select {
+    width: 100%;
+  }
+
+  .taskContentEdit .thirdLine button {
+    width: 100%;
+  }
+}
+

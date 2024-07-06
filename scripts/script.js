@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   allSideMenu.forEach((item) => {
     item.addEventListener("click", handleSidebarItemClick);
   });
-///////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
   // TOGGLE SIDEBAR
   const menuBar = document.querySelector("#content nav .bx.bx-menu");
   const sidebar = document.getElementById("sidebar");
@@ -202,47 +202,47 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-        function updateChartData() {
-          let users = JSON.parse(localStorage.getItem("users"));
-          let loggedInUser = users.find(
-            (user) =>
-              user.id == JSON.parse(localStorage.getItem("loggedInUser"))
-          );
+  function updateChartData() {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let loggedInUser = users.find(
+      (user) =>
+        user.id == JSON.parse(localStorage.getItem("loggedInUser"))
+    );
 
-          let overallStatusCounter = {
-            "To-Do": 0,
-            "In Progress": 0,
-            Completed: 0,
-          };
+    let overallStatusCounter = {
+      "To-Do": 0,
+      "In Progress": 0,
+      Completed: 0,
+    };
 
-          loggedInUser.projects.forEach((project) => {
-            overallStatusCounter["To-Do"] += project.taskStatusCounter["To-Do"];
-            overallStatusCounter["In Progress"] +=
-              project.taskStatusCounter["In Progress"];
-            overallStatusCounter["Completed"] +=
-              project.taskStatusCounter["Completed"];
-          });
+    loggedInUser.projects.forEach((project) => {
+      overallStatusCounter["To-Do"] += project.taskStatusCounter["To-Do"];
+      overallStatusCounter["In Progress"] +=
+        project.taskStatusCounter["In Progress"];
+      overallStatusCounter["Completed"] +=
+        project.taskStatusCounter["Completed"];
+    });
 
-          chartData.datasets[0].data[0] = overallStatusCounter["To-Do"];
-          chartData.datasets[0].data[1] = overallStatusCounter["In Progress"];
-          chartData.datasets[0].data[2] = overallStatusCounter["Completed"];
+    chartData.datasets[0].data[0] = overallStatusCounter["To-Do"];
+    chartData.datasets[0].data[1] = overallStatusCounter["In Progress"];
+    chartData.datasets[0].data[2] = overallStatusCounter["Completed"];
 
-          let percentages = calculatePercentage();
+    let percentages = calculatePercentage();
 
-          myPieChart.options.plugins.tooltip.callbacks.label = function (
-            tooltipItem
-          ) {
-            let label = tooltipItem.label || "";
-            if (label) {
-              label += ": ";
-            }
-            label += tooltipItem.raw.toLocaleString() + " tasks";
-            label += " (" + percentages[tooltipItem.dataIndex] + "%)";
-            return label;
-          };
+    myPieChart.options.plugins.tooltip.callbacks.label = function (
+      tooltipItem
+    ) {
+      let label = tooltipItem.label || "";
+      if (label) {
+        label += ": ";
+      }
+      label += tooltipItem.raw.toLocaleString() + " tasks";
+      label += " (" + percentages[tooltipItem.dataIndex] + "%)";
+      return label;
+    };
 
-          myPieChart.update();
-        }
+    myPieChart.update();
+  }
 
   function loadProjects() {
     let users = JSON.parse(localStorage.getItem("users"));
@@ -250,38 +250,38 @@ document.addEventListener("DOMContentLoaded", function () {
     users.forEach((user) => {
       if (user.id == JSON.parse(localStorage.getItem("loggedInUser"))) {
         loggedInUser = user;
-   
+
       }
     });
-     
+
     projectList.innerHTML = "";
 
     if (loggedInUser.projects) {
       loggedInUser.projects.forEach((project, projectIndex) => {
         let projectItem = Project(project, projectIndex);
         let taskStatusCounter = { "To-Do": 0, "In Progress": 0, Completed: 0 };
-          project.tasks.forEach((task) => {
-            taskStatusCounter[task.status]++;
-          });
-         project.taskStatusCounter = taskStatusCounter;
+        project.tasks.forEach((task) => {
+          taskStatusCounter[task.status]++;
+        });
+        project.taskStatusCounter = taskStatusCounter;
         projectList.appendChild(projectItem);
       });
       localStorage.setItem("users", JSON.stringify(users));
-        updateChartData();
+      updateChartData();
     }
   }
   /////////////////////////////////////////history
-    function addToHistory(action) {
-      const now = new Date();
-      const dateFormatted = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+  function addToHistory(action) {
+    const now = new Date();
+    const dateFormatted = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-      const row = document.createElement("tr");
-      row.innerHTML = `
+    const row = document.createElement("tr");
+    row.innerHTML = `
           <td>${action}</td>
           <td>${dateFormatted}</td>
       `;
 
-      historyTable.prepend(row); // Add new entry at the beginning of the table
+    historyTable.prepend(row); // Add new entry at the beginning of the table
   }
   ///////////////////////////////////////////
   //delete button edit
@@ -290,46 +290,53 @@ document.addEventListener("DOMContentLoaded", function () {
     projectItem.className = "project";
     projectItem.innerHTML = `
       <div id="container">
-      <div id="pro_main_flex">
-        <div id="pro_div">
-          <h3 id="h3">${project.title}  </h3>
-          
-          <button class="deleteProject">Delete Project</button>
-          
+        <div id="pro_main_flex">
+          <div id="pro_div">
+            <h3 id="h3">${project.title}</h3>
+            <button class="editProject">Edit Project</button>
+            <button class="deleteProject">Delete Project</button>
+          </div>
+
+        <div class="taskList">
+          <form class="taskForm">
+
+            <div class="taskOptions">
+              <input type="text" class="taskTitle" id="taskTitle${projectIndex}" placeholder="Task Title" required>
+              <select id="taskStatus${projectIndex}" required>
+                <option value="To-Do">To-Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+              <input type="date" id="taskDueDate${projectIndex}" required>
+            </div>
+            
+            <textarea id="taskDescription${projectIndex}" placeholder="Task Description" required></textarea>
+            
+            <button type="submit" id="form_button">Add Task</button>
+            
+          </form>
+          </div>
         </div>
-        <form class="taskForm">
-          <input type="text" class="taskTitle" id="taskTitle${projectIndex}" placeholder="Task Title" required> <select id="taskStatus${projectIndex}" required><br>
-            <option value="To-Do">To-Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select><input type="date" id="taskDueDate${projectIndex}" required><br>
-          <textarea id="taskDescription${projectIndex}" placeholder="Task Description" required></textarea><br>
-          <button type="submit" id="form_button">Add Task</button>
-        </form>
         <div id="task_list_div" class="taskList">
           <ul>
-            ${project.tasks
-              .map(
-                (task) => `
-              <li class="task" data-status="${task.status}" data-due-date="${task.dueDate}">
-                <div class="taskContent">
-                <div id="space">
-                  <h4>${task.title}</h4>
-                  <p>${task.description}</p>
-                  <p>Due Date: ${task.dueDate}</p>
-                  <p>Status: ${task.status}</p>
-                  <button class="editTask">Edit Task</button>
-                  <button class="deleteTask">Delete Task</button>
-                </div>
-              </li>
-            `
-              )
-              .join("")}
-              </div>
+            ${project.tasks.map(
+      (task) => `
+                <li class="task" data-status="${task.status}" data-due-date="${task.dueDate}">
+                  <div class="taskContent">
+                    <h4>${task.title}</h4>
+                    <p>${task.description}</p>
+                    <p>Due Date: ${task.dueDate}</p>
+                    <p>Status: ${task.status}</p>
+                    <button class="editTask">Edit Task</button>
+                    <button class="deleteTask">Delete Task</button>
+                  </div>
+                </li>
+              `
+    ).join("")}
           </ul>
         </div>
       </div>
-    `;
+  `;
 
     let taskForm = projectItem.querySelector(".taskForm");
     taskForm.addEventListener("submit", function (event) {
@@ -351,8 +358,34 @@ document.addEventListener("DOMContentLoaded", function () {
         taskDueDate,
         taskStatus
       );
-    
+
     });
+    /////edit project
+    let editProjectButton = projectItem.querySelector(".editProject");
+    editProjectButton.addEventListener("click", function () {
+      let projectTitleElement = projectItem.querySelector("#h3");
+      let currentTitle = projectTitleElement.innerText;
+
+      projectTitleElement.innerHTML = `<input type="text" id="editProjectTitle${projectIndex}" value="${currentTitle}" />`;
+      editProjectButton.style.display = 'none';
+      let saveProjectButton = document.createElement("button");
+      saveProjectButton.innerText = "Save";
+      saveProjectButton.className = "saveProject";
+      projectTitleElement.appendChild(saveProjectButton);
+
+      saveProjectButton.addEventListener("click", function () {
+        let newTitle = document.getElementById(`editProjectTitle${projectIndex}`).value;
+        projectTitleElement.innerHTML = newTitle;
+        editProjectButton.style.display = 'inline';
+
+        project.title = newTitle;
+      })
+    })
+
+
+
+
+
     //////////////////////////////change edit
     let taskItems = projectItem.querySelectorAll(".task");
     taskItems.forEach((taskItem, taskIndex) => {
@@ -362,41 +395,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const editForm = document.createElement("form");
 
         editForm.innerHTML = `
-        <input type="text" value="${
-          taskItem.querySelector("h4").innerText
-        }" required>
-        <textarea required>${
-          taskItem.querySelector("p:nth-of-type(1)").innerText
-        }</textarea>
-        <input type="date" value="${
-          taskItem.querySelector("p:nth-of-type(2)").innerText.split(": ")[1]
-        }" required>
-        <select required>
-          <option value="To-Do" ${
-            taskItem
-              .querySelector("p:nth-of-type(3)")
-              .innerText.split(": ")[1] === "To-Do"
-              ? "selected"
-              : ""
-          }>To-Do</option>
-          <option value="In Progress" ${
-            taskItem
-              .querySelector("p:nth-of-type(3)")
-              .innerText.split(": ")[1] === "In Progress"
-              ? "selected"
-              : ""
-          }>In Progress</option>
-          <option value="Completed" ${
-            taskItem
-              .querySelector("p:nth-of-type(3)")
-              .innerText.split(": ")[1] === "Completed"
-              ? "selected"
-              : ""
-          }>Completed</option>
-        </select>
-        <button type="submit">Save</button>
-        <button type="button" class="cancelEdit">Cancel</button>
-      `;
+         <div class="taskContentEdit">
+        <div class="firstLine">
+          <input type="text" value="${taskItem.querySelector("h4").innerText}" required>
+          <select required>
+            <option value="To-Do" ${taskItem.querySelector("p:nth-of-type(3)").innerText.split(": ")[1] === "To-Do" ? "selected" : ""}>To-Do</option>
+            <option value="In Progress" ${taskItem.querySelector("p:nth-of-type(3)").innerText.split(": ")[1] === "In Progress" ? "selected" : ""}>In Progress</option>
+            <option value="Completed" ${taskItem.querySelector("p:nth-of-type(3)").innerText.split(": ")[1] === "Completed" ? "selected" : ""}>Completed</option>
+          </select>
+          <input type="date" value="${taskItem.querySelector("p:nth-of-type(2)").innerText.split(": ")[1]}" required>
+        </div>
+        <div class="secondLine">
+          <textarea required>${taskItem.querySelector("p:nth-of-type(1)").innerText}</textarea>
+        </div>
+        <div class="thirdLine">
+          <button type="submit">Save</button>
+          <button type="button" class="cancelEdit">Cancel</button>
+        </div>
+      </div>
+    `;
 
         taskContent.style.display = "none";
         taskItem.appendChild(editForm);
@@ -409,27 +426,27 @@ document.addEventListener("DOMContentLoaded", function () {
               user.id == JSON.parse(localStorage.getItem("loggedInUser"))
           ); let editTaskTitle =
             loggedInUser.projects[projectIndex].tasks[taskIndex].title;
-             addToHistory(
-               `Edited task "${editTaskTitle}" in project "${loggedInUser.projects[projectIndex].title}"`
-             );
-let oldStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
-          
+          addToHistory(
+            `Edited task "${editTaskTitle}" in project "${loggedInUser.projects[projectIndex].title}"`
+          );
+          let oldStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
+
           loggedInUser.projects[projectIndex].tasks[taskIndex] = {
             title: editForm.querySelector("input[type='text']").value,
             description: editForm.querySelector("textarea").value,
             dueDate: editForm.querySelector("input[type='date']").value,
             status: editForm.querySelector("select").value,
           };
-        if (
-          oldStatus !==
-          loggedInUser.projects[projectIndex].tasks[taskIndex].status
-        ) {
-          loggedInUser.projects[projectIndex].taskStatusCounter[oldStatus]--;
-          loggedInUser.projects[projectIndex].taskStatusCounter[
+          if (
+            oldStatus !==
             loggedInUser.projects[projectIndex].tasks[taskIndex].status
-          ]++;
+          ) {
+            loggedInUser.projects[projectIndex].taskStatusCounter[oldStatus]--;
+            loggedInUser.projects[projectIndex].taskStatusCounter[
+              loggedInUser.projects[projectIndex].tasks[taskIndex].status
+            ]++;
           }
-         
+
           localStorage.setItem("users", JSON.stringify(users));
           loadProjects();
         });
@@ -440,48 +457,68 @@ let oldStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
             taskContent.style.display = "";
             taskItem.removeChild(editForm);
           });
-       
+
       });
 
       let deleteTask = taskItem.querySelector(".deleteTask");
       deleteTask.addEventListener("click", function () {
         let users = JSON.parse(localStorage.getItem("users"));
-        /////////////change
+
         let loggedInUser = users.find(
           (user) => user.id == JSON.parse(localStorage.getItem("loggedInUser"))
         );
-           let deletedTaskTitle =
-             loggedInUser.projects[projectIndex].tasks[taskIndex].title;
-           addToHistory(`Deleted Task "${deletedTaskTitle}"`);
-let taskStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
+        let deletedTaskTitle =
+          loggedInUser.projects[projectIndex].tasks[taskIndex].title;
+        addToHistory(`Deleted Task "${deletedTaskTitle}"`);
+        let taskStatus =
+          loggedInUser.projects[projectIndex].tasks[taskIndex].status;
         loggedInUser.projects[projectIndex].tasks.splice(taskIndex, 1);
-      
+
         loggedInUser.projects[projectIndex].taskStatusCounter[taskStatus]--;
-       
+
         localStorage.setItem("users", JSON.stringify(users));
         loadProjects();
       });
+
     });
 
-    let deleteProject = projectItem.querySelector(".deleteProject");
-    deleteProject.addEventListener("click", function () {
-      let users = JSON.parse(localStorage.getItem("users"));
-      /////////////////change
-      let loggedInUser = users.find(
-        (user) => user.id == JSON.parse(localStorage.getItem("loggedInUser"))
-      );
-  let deletedProjectTitle = loggedInUser.projects[projectIndex].title;
-  loggedInUser.projects.splice(projectIndex, 1);
-  addToHistory(`Deleted project "${deletedProjectTitle}"`);
-      loggedInUser.projects.splice(projectIndex, 1);
-      localStorage.setItem("users", JSON.stringify(users));
-      loadProjects();
-     
+    let deleteProjectButton = projectItem.querySelector(".deleteProject");
+    deleteProjectButton.addEventListener("click", function () {
+      // Show SweetAlert confirmation dialog
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this project!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          deleteProject(projectIndex); // Call deleteProject function if user confirms
+          swal("Poof! Your project has been deleted!", {
+            icon: "success",
+          });
+          setTimeout(() => {
+            swal.close();
+          }, 3000);
+        } else {
+
+        }
+      });
     });
 
     return projectItem;
   }
 
+  // Function to delete project
+  function deleteProject(projectIndex) {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let loggedInUser = users.find(user => user.id == JSON.parse(localStorage.getItem("loggedInUser")));
+    let deletedProjectTitle = loggedInUser.projects[projectIndex].title;
+    loggedInUser.projects.splice(projectIndex, 1);
+    addToHistory(`Deleted project "${deletedProjectTitle}"`);
+    localStorage.setItem("users", JSON.stringify(users));
+    loadProjects(); // Reload projects or update UI as needed
+  }
   function saveTask(projectIndex, title, description, dueDate, status) {
     let users = JSON.parse(localStorage.getItem("users"));
 
@@ -497,9 +534,9 @@ let taskStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
         description,
         dueDate,
         status,
-        
+
       });
-        loggedInUser.projects[projectIndex].taskStatusCounter[status]++;
+      loggedInUser.projects[projectIndex].taskStatusCounter[status]++;
       localStorage.setItem("users", JSON.stringify(users));
       loadProjects();
     }
@@ -553,3 +590,5 @@ let taskStatus = loggedInUser.projects[projectIndex].tasks[taskIndex].status;
     window.location.href = "index.html";
   });
 });
+
+

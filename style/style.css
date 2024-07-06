@@ -31,8 +31,6 @@ li {
 	--light-orange: #FFE0D3;
 }
 
-
-
 html {
 	overflow-x: hidden;
 }
@@ -47,10 +45,6 @@ body {
 	background: var(--grey);
 	overflow-x: hidden;
 }
-
-
-
-
 
 /* SIDEBAR */
 #sidebar {
@@ -89,6 +83,10 @@ body {
 	z-index: 500;
 	padding-bottom: 20px;
 	box-sizing: content-box;
+}
+
+#sidebar .brand:hover {
+	text-decoration: none;
 }
 
 #sidebar .brand .bx {
@@ -161,11 +159,17 @@ body {
 	transition: width .3s ease;
 }
 
-#sidebar .side-menu li a.logout {
+#sidebar .side-menu li a#logout {
 	color: var(--red);
 }
 
+#sidebar .side-menu li a#logout:hover {
+	text-decoration: none;
+
+}
+
 #sidebar .side-menu.top li a:hover {
+	text-decoration: none;
 	color: var(--blue);
 }
 
@@ -174,12 +178,6 @@ body {
 	display: flex;
 	justify-content: center;
 }
-
-/* SIDEBAR */
-
-
-
-
 
 /* CONTENT */
 #content {
@@ -193,9 +191,6 @@ body {
 	width: calc(100% - 60px);
 	left: 60px;
 }
-
-
-
 
 /* NAVBAR */
 #content nav {
@@ -251,7 +246,7 @@ body {
 	display: flex;
 	align-items: center;
 	height: 36px;
-	
+	margin: 0;
 }
 
 #content nav form .form-input input {
@@ -264,6 +259,7 @@ body {
 	outline: none;
 	width: 100%;
 	color: var(--dark);
+	margin: 0;
 }
 
 #content nav form .form-input button {
@@ -307,11 +303,9 @@ body {
 	left: calc(100% - (25px - 4px) - 2px);
 }
 
-/* NAVBAR */
-
-
-
-
+.switch-mode i{
+	color: white;
+}
 
 /* MAIN */
 #content main {
@@ -357,11 +351,6 @@ body {
 	pointer-events: unset;
 }
 
-
-
-
-
-
 #content main .table-data {
 	display: flex;
 	flex-wrap: wrap;
@@ -370,7 +359,6 @@ body {
 	width: 100%;
 	color: var(--dark);
 	flex-direction: column;
-
 }
 
 #content main .table-data>div {
@@ -385,7 +373,6 @@ body {
 	align-items: center;
 	grid-gap: 16px;
 	margin-bottom: 24px;
-	
 }
 
 #content main .table-data .head h3 {
@@ -422,7 +409,6 @@ body {
 
 #content main .table-data .order table tr td:first-child {
 	display: flex;
-	
 	align-items: center;
 	grid-gap: 12px;
 	padding-left: 6px;
@@ -458,7 +444,6 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
-
 
 #content main .table-data .todo {
 	flex-grow: 1;
@@ -499,140 +484,8 @@ body {
 /* MAIN */
 #Projects {
 	height: 1200px;
-
 	border-radius: 15px;
 }
-
-/* meedia */
-
-
-/* @media screen and (max-width: 768px) {
-	#sidebar {
-		width: 200px;
-	}
-
-	#content {
-		width: calc(100% - 60px);
-		left: 200px;
-	}
-
-	#content nav .nav-link {
-		display: none;
-	}
-}
-
-
-@media screen and (max-width: 1024px) {
-	#sidebar {
-		width: 200px;
-	}
-
-	#content {
-		width: calc(100% - 200px);
-		left: 200px;
-	}
-
-	#sidebar.hide {
-		width: 60px;
-	}
-
-	#sidebar.hide~#content {
-		width: calc(100% - 60px);
-		left: 60px;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	#sidebar {
-		width: 60px;
-	}
-
-	#sidebar.hide~#content {
-		left: 60px;
-		width: calc(100% - 60px);
-	}
-
-	#content {
-		width: calc(100% - 60px);
-		left: 60px;
-	}
-
-	#content nav .nav-link {
-		display: none;
-	}
-
-	#content main {
-		padding: 24px 16px;
-	}
-
-	#content main .head-title .left h1 {
-		font-size: 28px;
-	}
-
-	#content main .table-data .order,
-	#content main .table-data .todo {
-		flex-basis: 100%;
-	}
-
-	#content main .table-data .order table th,
-	#content main .table-data .order table td {
-		font-size: 12px;
-		padding: 8px 0;
-	}
-
-	#content main .table-data .todo .todo-list li {
-		padding: 10px 16px;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	#sidebar {
-		width: 60px;
-	}
-
-	#sidebar.hide~#content {
-		left: 60px;
-		width: calc(100% - 60px);
-	}
-
-	#content {
-		width: calc(100% - 60px);
-		left: 60px;
-	}
-
-	#content nav .nav-link {
-		display: none;
-	}
-
-	#content nav form {
-		width: 100%;
-	}
-
-	#content main {
-		padding: 16px 12px;
-	}
-
-	#content main .head-title .left h1 {
-		font-size: 24px;
-	}
-
-	#content main .table-data .order,
-	#content main .table-data .todo {
-		flex-basis: 100%;
-	}
-
-	#content main .table-data .order table th,
-	#content main .table-data .order table td {
-		font-size: 10px;
-		padding: 6px 0;
-	}
-
-	#content main .table-data .todo .todo-list li {
-		padding: 8px 12px;
-	}
-} */
-
-
 
 @media screen and (max-width: 576px) {
 	#content nav form .form-input input {
